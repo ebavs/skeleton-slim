@@ -1,0 +1,35 @@
+<aside class="left-side sidebar-offcanvas">                
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li {% if option is defined and option == 'dash' %}class="active"{% endif %}>
+                <a href="{{ path_for('homepage') }}" style="">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </a>
+            </li>
+
+            <li class="treeview{% if option is defined and option == 'ciclos' %} active{% endif %}">
+                <a href="#">
+                    <i class="fa fa-exchange"></i>
+                    <span>Ciclos</span>
+                    <i class="fa pull-right fa-angle-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{% if option is defined and option == 'ciclos' %} active{% endif %}">
+                        <a href="{{ path_for('cursos') }}"><i class="fa fa-dashboard"></i><span>Gestión Dashboard</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="{% if option is defined and option == 'students' %} active{% endif %}">
+                <a href="{{ path_for('students') }}"><span>Alumnos</span></a>
+            </li>
+
+            {% block menu %}{% endblock %}
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

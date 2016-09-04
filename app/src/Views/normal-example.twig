@@ -1,0 +1,86 @@
+{% extends 'base/backend.html.twig' %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <!-- page script -->
+    <script type="text/javascript">
+    </script>
+{% endblock %}
+
+{% block container %}
+
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+
+        {% include 'base/menu.html.twig' with {'option': 'dash'} %}
+
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Ciclos
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        {% include 'base/alerts.html.twig' %}
+
+                        <div class="box">
+                            <div class="box-header">
+
+                            </div><!-- /.box-header -->
+
+                            <div class="box-body table-responsive">
+                                <table class="ciclos-list table table-bordered table-striped">
+                                    {% for key,curso in ciclos %}
+                                        <tr class="odd">
+                                            <td>&nbsp</td>
+                                            <td></td>
+                                            <td>{{ curso.name }}</td>
+                                            <td>{{ curso.city }}</td>
+                                            <td>{{ curso.year }}</td>
+                                            <td>&nbsp</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>id</th>
+                                            <th></th>
+                                            <th>Sesion</th>
+                                            <th># Alumnos</th>
+                                            <th>Codigo</th>
+                                            <th>&nbsp</th>
+                                        </tr>
+
+                                        {% for ses in curso.sesiones %}
+                                            <tr>
+                                                <td>{{ ses.id }}</td>
+                                                <td><a href="{{ path_for('sessions', {'session': ses.id}) }}" class="btn btn-primary btn-xs">Ver</a></td>
+                                                <td>{{ ses.name }}</td>
+                                                <td>{{ ses.alumnos }}</td>
+                                                <td>{{ ses.code }}</td>
+                                                <td><a href="{{ path_for('sessions', {'session': ses.id}) }}" class="btn btn-primary btn-xs">Ver</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td colspan="6">&nbsp</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </table>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+
+            </section><!-- /.content -->
+        </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+
+{% endblock %}

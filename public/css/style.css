@@ -1,0 +1,10 @@
+
+.ciclos-list > tbody > tr.odd {
+    background-color: antiquewhite;
+}
+
+/*
+.ciclos-list {
+    background-color: antiquewhite;
+}
+*/

@@ -1,0 +1,78 @@
+{% extends 'base/base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- bootstrap 3.0.2 -->
+    <link href="{{ app.asset_path }}/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="{{ app.asset_path }}/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- Skin style -->
+    <link href="{{ app.asset_path }}/css/skins/skin-yellow.min.css" rel="stylesheet" type="text/css" />
+    <!-- SBR style -->
+    <link href="{{ app.asset_path }}/css/style.css" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+
+{% block body_params %}class="sidebar-mini skin-yellow"{% endblock %}
+
+{% block header %}
+{% include 'base/header.html.twig' %}
+{% endblock %}
+
+{% block container %}
+{% endblock %}
+
+{% block footer %}
+{% include 'base/footer.html.twig' %}
+{% endblock %}
+
+{% block head_javascripts %}
+    <!-- jQuery 2.1.4 -->
+    <script src="{{ app.asset_path }}/js/plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>
+    <!-- jQuery UI 1.10.3 -->
+    <script src="{{ app.asset_path }}/js/plugins/jQueryUI/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Bootstrap -->
+    <script src="{{ app.asset_path }}/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ app.asset_path }}/js/app.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function getColor( num ) {
+
+            var rColor = [
+                "#F7464A",
+                "#46BFBD",
+                "#FDB45C",
+                "#949FB1",
+                "#4D5360",
+                "#B48EAD",
+                //highlight
+                "#FF5A5E",
+                "#5AD3D1",
+                "#FFC870",
+                "#A8B3C5",
+                "#616774",
+                "#C69CBE",
+            ];
+
+            var color = '';
+            if (num > rColor.length) {
+                while (!color.match(/(#[c-e].)([e-f][a-f])([9-c].)/)) {
+                    color = '#' + Math.floor(Math.random() * (Math.pow(16,6))).toString(16);
+                }
+            }
+            else{
+                color = rColor[num];
+            }
+
+            return color;
+        }
+    </script>
+
+{% endblock %}
