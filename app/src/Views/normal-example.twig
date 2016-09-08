@@ -20,7 +20,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Ciclos
+                    Title Here
                 </h1>
             </section>
 
@@ -38,41 +38,23 @@
                             </div><!-- /.box-header -->
 
                             <div class="box-body table-responsive">
-                                <table class="ciclos-list table table-bordered table-striped">
-                                    {% for key,curso in ciclos %}
-                                        <tr class="odd">
-                                            <td>&nbsp</td>
-                                            <td></td>
-                                            <td>{{ curso.name }}</td>
-                                            <td>{{ curso.city }}</td>
-                                            <td>{{ curso.year }}</td>
-                                            <td>&nbsp</td>
-                                        </tr>
+                                <table class="table table-bordered table-striped">
 
                                         <tr>
-                                            <th>id</th>
-                                            <th></th>
-                                            <th>Sesion</th>
-                                            <th># Alumnos</th>
-                                            <th>Codigo</th>
-                                            <th>&nbsp</th>
+                                            <th>f1</th>
+                                            <th>f2</th>
+                                            <th>f3</th>
+                                            <th>f4</th>
                                         </tr>
 
-                                        {% for ses in curso.sesiones %}
+                                        {% for value in data %}
                                             <tr>
-                                                <td>{{ ses.id }}</td>
-                                                <td><a href="{{ path_for('sessions', {'session': ses.id}) }}" class="btn btn-primary btn-xs">Ver</a></td>
-                                                <td>{{ ses.name }}</td>
-                                                <td>{{ ses.alumnos }}</td>
-                                                <td>{{ ses.code }}</td>
-                                                <td><a href="{{ path_for('sessions', {'session': ses.id}) }}" class="btn btn-primary btn-xs">Ver</a></td>
+                                                <td>{{ value.field1 }}</td>
+                                                <td>{{ value.field2 }}</td>
+                                                <td>{{ value.field3 }}</td>
+                                                <td>{{ value.field4 }}</td>
                                             </tr>
                                         {% endfor %}
-                                        <tr>
-                                            <td colspan="6">&nbsp</td>
-                                        </tr>
-                                    {% endfor %}
-
                                 </table>
                             </div><!-- /.box-body -->
                         </div><!-- /.box -->

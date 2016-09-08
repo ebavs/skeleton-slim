@@ -22,6 +22,15 @@ $container['view'] = function ($c) {
     $view->addExtension(new Twig_Extension_Debug());
     $view->addExtension(new Twig_Extension_Profiler($c['twig_profile']));
 
+    $base_path = '';
+    if (isset($settings['base_path']) && !empty($settings['base_path']) ) {
+        $base_path = $c['request']->getUri()->getScheme() . '://' .
+                     $c['request']->getUri()->getHost() . '/' .
+                        $settings['base_path'];
+    }
+
+    $view->getEnvironment()->addGlobal('base_path', $base_path);
+
     return $view;
 };
 
@@ -43,8 +52,8 @@ $container['db'] = function ($c) {
 /*******
  * MODELS
  */
-$container['model.import'] = function( $c ) {
-    return new App\Models\ImportModel( $c['db'] );
+$container['model.home'] = function( $c ) {
+    return new App\Models\HomeModel( $c['db'] );
 };
 
 
@@ -67,4 +76,8 @@ $container['logger'] = function ($c) {
 
 $container[App\Action\HomeAction::class] = function ($c) {
     return new App\Action\HomeAction( $c );
+};
+
+$container[App\Controllers\HomeController::class] = function ($c) {
+    return new App\Controllers\HomeController( $c );
 };

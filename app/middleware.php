@@ -3,6 +3,11 @@
 
 // e.g: $app->add(new \Slim\Csrf\Guard);
 
+
+/****
+ * Uncoment next lines for Basic auth
+ */
+/*
 $app->add(
     new \Slim\Middleware\HttpBasicAuthentication([
         'path' => '/',
@@ -21,5 +26,9 @@ $app->add(
         }
     ])
 );
+*/
 
+/***
+ * Tracy Debug Bar
+ */
 $app->add(new \App\Middleware\TracyDBMiddleware( $app->getContainer()['db'], $app->getContainer()['twig_profile'] ));

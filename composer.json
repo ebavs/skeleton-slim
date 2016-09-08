@@ -13,7 +13,7 @@
             "name": "Victor Santacreu",
             "email": "victor@ebavs.net",
             "homepage": "http://ebavs.net"
-        },
+        }
     ],
     "autoload": {
         "psr-4": {

@@ -3,6 +3,7 @@ return [
     'settings' => [
         'mode'              => 'debug',
 
+        'base_path'         => 'base-web',
         // Slim Settings
         'determineRouteBeforeAppMiddleware' => false,
         'displayErrorDetails' => true,

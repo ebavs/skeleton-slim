@@ -1,10 +1,11 @@
 <?php
 // Routes
 
-$app->get('/', App\Action\HomeAction::class)
-    ->setName('homepage');
+$app->group('/' . $settings['settings']['base_path'], function() {
 
-/**
- * Import
- */
-$app->map(['GET'],'/import', App\Action\ImportAction::class);
+    $this->get('/', App\Action\HomeAction::class)->setName('homepage');
+
+    $this->map(['GET'],'/controller', App\Controllers\HomeController::class)->setName('datatable');
+    $this->map(['GET'],'/controller/data', 'App\Controllers\HomeController:getData')->setName('datatable-json');
+
+});

@@ -5,7 +5,7 @@
     {{ parent() }}
 
     <!-- Datatables -->
-    <link href="{{ app.asset_path }}/js/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="{{ base_path }}/js/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block javascripts %}
@@ -13,16 +13,16 @@
     {{ parent() }}
 
     <!-- DataTables -->
-    <script src="{{ app.asset_path }}/js/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="{{ app.asset_path }}/js/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{ base_path }}/js/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="{{ base_path }}/js/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
 
     <!-- page script -->
     <script type="text/javascript">
         $(function() {
 
-            $("#students_list").dataTable({
+            $("#example_list").dataTable({
                 serverSide: true,
-                ajax: '{{ path_for('cursos-list') }}',
+                ajax: '{{ path_for('datatable-json') }}',
                 "iDisplayLength": 25,
                 "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
                 columns: [
@@ -34,70 +34,26 @@
                         "data": null,
                         "defaultContent": null
                     }
-                ],
-                rowCallback: function( row, data ) {
-                    {#
-                    //var actions = '<a href="{{ path_for('entity_edit', {id:false}) }}/' + data.{{primary_key}} + '" class="btn btn-primary btn-xs">Edit</a> <a href="{{ path_for('entity_delete',{id:false}) }}/' + data.{{primary_key}} + '" onclick="return confirm_delete();" class="btn btn-danger btn-xs">Delete</a>';
-                    #}
-                    //$('td:eq({{ table_columns|length }})', row).html( actions );
-                    //$('td:eq(0)', row).html( iDisplayNumber++ );
-                    var activateCourse = '{{ path_for('cursos-active', {curso: '-cur-'}) }}'.replace('-cur-', data.id );
-                    var editCourse = '{{ path_for('curso-edit', {curso: '-cur-'}) }}'.replace('-cur-', data.id );
-
-                    var $action  = $("<a>").attr("href", activateCourse)
-                            .addClass("btn btn-xs curso-active")
-                            .on('click', function(e) {
-
-                                var me = this;
-
-                                $.ajax({
-                                    url: $(me).attr("href")
-                                }).done(function ( data, status, xhr ) {
-                                    if ($(me).text() == "Desactivado") {
-                                        $(me).removeClass("btn-primary").addClass("btn-success").text("Activo");
-                                    } else {
-                                        $(me).removeClass("btn-success").addClass("btn-primary").text("Desactivado");
-                                    }
-                                });
-
-                                return false;
-                            });
-
-                    if (data.active == "1") {
-                        $action = $action.addClass("btn-success").text("Activo");
-                    } else {
-                        $action = $action.addClass("btn-primary").text("Desactivado");
-                    }
-
-                    var $ver    = $("<a>").attr("href", editCourse).addClass("btn btn-xs btn-warning").text("Editar");
-
-                    $('td:eq({{ table_columns|length }})', row).html($action).append("&nbsp;").append($ver);
-
-                }
+                ]
             });
         });
 
-        function confirm_delete(){
-            if(!confirm("Are you sure? This action cannot be undone.")) {
-                return false;
-            }
-        }
-
     </script>
 {% endblock %}
+
 
 {% block container %}
 
     <div class="wrapper row-offcanvas row-offcanvas-left">
 
-        {% include 'base/menu.html.twig' with {'option': 'ciclos'} %}
+        {% include 'base/menu.html.twig' with {'option': 'datatable'} %}
 
         <!-- Right side column. Contains the navbar and content of the page -->
         <aside class="right-side">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Gestión Ciclos en Dashboard
+                    Title Here
                 </h1>
             </section>
 
@@ -115,7 +71,7 @@
                             </div><!-- /.box-header -->
 
                             <div class="box-body table-responsive">
-                                <table id="students_list" class="table table-bordered table-striped">
+                                <table id="example_list" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         {% for key,table_column in table_columns %}

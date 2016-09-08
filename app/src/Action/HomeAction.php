@@ -9,7 +9,16 @@ final class HomeAction extends BaseAction
 
     public function __invoke(Request $request, Response $response, $args)
     {
-        return $response->withBody("Ok");
+        /**
+         * @var $model \App\Models\HomeModel
+         */
+        $model   = $this->container['model.home'];
+
+        $data    = $model->homeTest();
+
+        $this->view->render($response, 'normal-example.twig', [
+            'data'        => $data
+        ]);
     }
 
 }
